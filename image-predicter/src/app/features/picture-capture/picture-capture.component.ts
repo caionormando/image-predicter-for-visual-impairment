@@ -7,7 +7,7 @@ import { PictureCaptureService } from './services/picture-capture.service';
   styleUrls: ['./picture-capture.component.scss'],
 })
 export class PictureCaptureComponent {
-  selectedFile = null;
+  selectedFile: File;
 
   constructor(private photoCaptureService: PictureCaptureService) {}
   onFileSelected(event) {

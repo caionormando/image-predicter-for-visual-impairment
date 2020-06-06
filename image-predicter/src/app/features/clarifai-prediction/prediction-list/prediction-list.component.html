@@ -1,4 +1,4 @@
-<div class="gray-table" style="margin-top: 10px;">
+<div class="gray-table" style="margin-top: 10px;" *ngIf="predictionData">
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
@@ -16,3 +16,4 @@
     </tbody>
   </table>
 </div>
+<app-loading-spinner></app-loading-spinner>
