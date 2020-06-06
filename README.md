@@ -4,6 +4,7 @@ This project contains a SPA for detecting images in different environments by pi
 
 ## Resources
 * Angular 9
+* RxJS 6.5
 * HTML5
 * SCSS
 * Javascript
