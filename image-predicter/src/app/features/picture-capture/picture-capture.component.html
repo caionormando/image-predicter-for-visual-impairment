@@ -1,0 +1,21 @@
+<div class='text-center'><h1>Image Predicter</h1></div>
+<div class="text-center">
+  <input
+    class="mt-5"
+    type="file"
+    capture="camera"
+    accept="image/*"
+    id="cameraInput"
+    name="cameraInput"
+    (change)="onFileSelected($event)"
+  />
+</div>
+<div class="text-center">
+  <button class="btn btn-success mt-5" type="button" (click)="onUpload()">
+    Predict picture
+  </button>
+  <app-clarifai-prediction
+    *ngIf="selectedFile"
+    [picture]="selectedFile"
+  ></app-clarifai-prediction>
+</div>
