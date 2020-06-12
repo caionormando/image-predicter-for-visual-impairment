@@ -24,6 +24,9 @@ By aiming the camera to any object and clicking on predict, this app takes a sna
 * Clarifai general mode API
 * Ngx-Spinner
 * Ngx-Webcam
+
+## Issues
+Important: this app is served on a secure context using https:// or on localhost, for modern browsers to permit WebRTC/UserMedia access. This is a requirement from Ngx-Webcam.
  
 ## Status
 Beta
