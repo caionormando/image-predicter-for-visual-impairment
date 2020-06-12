@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
+import { WebcamImage } from 'ngx-webcam';
 
 @Injectable({ providedIn: 'root' })
 export class PictureCaptureService {
-  private photoUploading = new Subject<File>();
+  private photoUploading = new ReplaySubject<any>(1);
 
   photoUploading$ = this.photoUploading.asObservable();
 
-  emmitPhotoUploading(photo: File) {
-    this.photoUploading.next(photo);
+  emmitPhotoUploading(photoUrl: string) {
+    this.photoUploading.next(photoUrl);
   }
 }
