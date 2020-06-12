@@ -1,21 +1,20 @@
 <div class="text-center"><h1>Image Predicter</h1></div>
 <div class="text-center">
-  <input
+  <webcam
     class="mt-5"
-    type="file"
-    capture="camera"
-    accept="image/*"
-    id="cameraInput"
-    name="cameraInput"
-    (change)="onFileSelected($event)"
-  />
+    [height]="400"
+    [width]="400"
+    [trigger]="pictureTriggerObservable"
+    (imageCapture)="onUpload($event)"
+  ></webcam>
 </div>
 <div class="text-center">
-  <button class="btn btn-success mt-5" type="button" (click)="onUpload()">
+  <button
+    class="btn btn-success mt-2"
+    type="button"
+    (click)="triggerPictureSnapshot()"
+  >
     Predict picture
   </button>
-  <app-clarifai-prediction
-    *ngIf="selectedFile"
-    [picture]="selectedFile"
-  ></app-clarifai-prediction>
+  <app-clarifai-prediction *ngIf="imageUrl"></app-clarifai-prediction>
 </div>
