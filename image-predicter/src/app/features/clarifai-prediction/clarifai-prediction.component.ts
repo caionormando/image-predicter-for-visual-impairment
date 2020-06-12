@@ -14,6 +14,7 @@ import { AlertService } from 'src/app/shared/alert/services/alert.service';
 })
 export class ClarifaiPredictionComponent implements OnInit {
   predictionList: any;
+  showAlert: boolean;
   subscription: Subscription;
   clarifaiApp = new Clarifai.App({
     apiKey: 'e5d4d4c1c16045ef9b162f53c41ceda6',
@@ -22,18 +23,24 @@ export class ClarifaiPredictionComponent implements OnInit {
   constructor(
     private photoCaptureService: PictureCaptureService,
     private clarifaiCommunicationService: ClarifaiCommunicationServices,
-    private spinner: NgxSpinnerService,
-    private alertService: AlertService
+    private spinner: NgxSpinnerService
   ) {}
   ngOnInit() {
-
     this.spinner.show();
+    this.showAlert = true;
     this.photoCaptureService.photoUploading$
       .pipe(
         tap(() => {
           setTimeout(() => {
             this.spinner.hide();
           }, 500);
+        })
+      )
+      .pipe(
+        tap(() => {
+          setTimeout(() => {
+            this.showAlert = false;
+          }, 3000);
         })
       )
       .subscribe((photoUploaded) => {
@@ -47,7 +54,6 @@ export class ClarifaiPredictionComponent implements OnInit {
       (response) => {
         this.predictionList = response.outputs[0].data.concepts;
         this.clarifaiCommunicationService.emmitPrediction(this.predictionList);
-        // this.alertService.success('Scroll down to see the results');
       },
       (err) => {
         console.error(err);
